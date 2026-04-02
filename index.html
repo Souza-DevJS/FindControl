@@ -1,0 +1,131 @@
+<!-- Exemplo: Estrutura base do Dashboard -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinControl - Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>💰 FinControl</h2>
+    </div>
+    <nav>
+      <ul>
+        <li class="active" data-page="dashboard">📊 Dashboard</li>
+        <li data-page="transactions">💳 Transações</li>
+        <li data-page="goals">🎯 Metas</li>
+        <li data-page="reports">📈 Relatórios</li>
+        <li data-page="settings">⚙️ Configurações</li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-bar">
+      <div class="search-box">
+        <input type="text" placeholder="Buscar transação...">
+      </div>
+      <div class="user-info">
+        <span class="notification-bell">🔔<span class="badge">3</span></span>
+        <div class="avatar">JD</div>
+      </div>
+    </header>
+
+    <section class="dashboard-page">
+      <!-- Cards resumo -->
+      <div class="summary-cards">
+        <div class="card card-income">
+          <span class="card-icon">📈</span>
+          <div>
+            <p class="card-label">Receitas</p>
+            <h3 class="card-value" id="totalIncome">R$ 0,00</h3>
+          </div>
+        </div>
+        <div class="card card-expense">
+          <span class="card-icon">📉</span>
+          <div>
+            <p class="card-label">Despesas</p>
+            <h3 class="card-value" id="totalExpense">R$ 0,00</h3>
+          </div>
+        </div>
+        <div class="card card-balance">
+          <span class="card-icon">💰</span>
+          <div>
+            <p class="card-label">Saldo</p>
+            <h3 class="card-value" id="totalBalance">R$ 0,00</h3>
+          </div>
+        </div>
+        <div class="card card-savings">
+          <span class="card-icon">🏦</span>
+          <div>
+            <p class="card-label">Economizado</p>
+            <h3 class="card-value" id="totalSavings">R$ 0,00</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráfico -->
+      <div class="chart-container">
+        <h3>Gastos por Categoria</h3>
+        <canvas id="expenseChart" width="600" height="300"></canvas>
+      </div>
+
+      <!-- Últimas transações -->
+      <div class="recent-transactions">
+        <h3>Últimas Transações</h3>
+        <div id="transactionList"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal adicionar transação -->
+  <div class="modal" id="transactionModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Nova Transação</h2>
+      <form id="transactionForm">
+        <div class="form-group">
+          <label>Descrição</label>
+          <input type="text" id="desc" required>
+        </div>
+        <div class="form-group">
+          <label>Valor (R$)</label>
+          <input type="number" id="amount" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label>Tipo</label>
+          <select id="type">
+            <option value="income">Receita</option>
+            <option value="expense">Despesa</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Categoria</label>
+          <select id="category">
+            <option value="alimentacao">🍔 Alimentação</option>
+            <option value="transporte">🚗 Transporte</option>
+            <option value="moradia">🏠 Moradia</option>
+            <option value="lazer">🎮 Lazer</option>
+            <option value="salario">💼 Salário</option>
+            <option value="freelance">💻 Freelance</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Data</label>
+          <input type="date" id="date" required>
+        </div>
+        <button type="submit" class="btn-primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+
+  <button class="fab" id="addTransaction">+</button>
+
+  <script src="js/storage.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
